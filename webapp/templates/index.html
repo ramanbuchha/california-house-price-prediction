@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>California Housing Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+    <div class="container">
+
+        <h2 class="title">California Housing Prediction</h2>
+
+        <form action="/predict" method="post" class="prediction-form">
+
+            <div class="form-grid">
+
+                <div class="box">
+                    <label>Median Income</label>
+                    <input type="text" name="MedInc" required>
+                </div>
+
+                <div class="box">
+                    <label>House Age</label>
+                    <input type="text" name="HouseAge" required>
+                </div>
+
+                <div class="box">
+                    <label>Average Rooms</label>
+                    <input type="text" name="AveRooms" required>
+                </div>
+
+                <div class="box">
+                    <label>Average Bedrooms</label>
+                    <input type="text" name="AveBedrms" required>
+                </div>
+
+                <div class="box">
+                    <label>Population</label>
+                    <input type="text" name="Population" required>
+                </div>
+
+                <div class="box">
+                    <label>Average Occupancy</label>
+                    <input type="text" name="AveOccup" required>
+                </div>
+
+                <div class="box">
+                    <label>Latitude</label>
+                    <input type="text" name="Latitude" required>
+                </div>
+
+                <div class="box">
+                    <label>Longitude</label>
+                    <input type="text" name="Longitude" required>
+                </div>
+
+            </div>
+
+            <input type="submit" value="Predict" class="predict-btn">
+
+        </form>
+
+        {% if regression_result %}
+        <div class="result">
+            <h3>Predicted House Value: {{ regression_result }}</h3>
+            <h3>Predicted Category: {{ classification_result }}</h3>
+            <h3>Predicted Cluster: {{ cluster_result }}</h3>
+        </div>
+        {% endif %}
+
+    </div>
+
+</body>
+</html>
