@@ -145,14 +145,14 @@ Example test values:
 
 | Feature | Value |
 |----------|--------|
-| MedInc | 4 |
-| HouseAge | 30 |
-| AveRooms | 6 |
+| MedInc | 3.5 |
+| HouseAge | 25 |
+| AveRooms | 5.5 |
 | AveBedrms | 1 |
-| Population | 1000 |
+| Population | 1200 |
 | AveOccup | 3 |
-| Latitude | 34 |
-| Longitude | -118 |
+| Latitude | 34.2 |
+| Longitude | -118.4 |
 
 ---
 
