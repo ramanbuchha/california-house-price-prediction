@@ -47,12 +47,16 @@ Converted MedHouseVal into:
 - Medium Value (Middle 33%)
 - High Value (Top 33%)
 
-Models Trained:
+Models Trained & Integrated in Web App:
 - Logistic Regression
 - Decision Tree
-- Random Forest (Final Selected Model)
-- Support Vector Machine
+- Random Forest
+- Support Vector Machine (SVM)
 - Neural Network (MLP)
+
+🆕 Feature:
+The web application allows dynamic selection of classification models 
+using a dropdown menu. Users can compare predictions from different models.
 
 Evaluation Metrics:
 - Accuracy
@@ -79,9 +83,11 @@ Evaluation:
 The Flask web application allows users to:
 
 - Enter housing features
+- Select classification model from dropdown
 - Get predicted house value (Regression)
 - Get predicted category (Classification)
 - Get predicted regional cluster (Clustering)
+- View which model was used for prediction
 
 ---
 
@@ -92,10 +98,14 @@ The Flask web application allows users to:
 ├── CS33002_ADL_California_Housing.ipynb
 ├── models/
 │ ├── regression_model.pkl
-│ ├── classification_model.pkl
 │ ├── clustering_model.pkl
 │ ├── scaler.pkl
-│ └── thresholds.pkl
+│ ├── thresholds.pkl
+│ ├── logistic_model.pkl
+│ ├── decision_tree_model.pkl
+│ ├── random_forest_model.pkl
+│ ├── svm_model.pkl
+│ └── mlp_model.pkl
 │
 ├── webapp/
 │ ├── app.py
