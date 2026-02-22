@@ -14,7 +14,12 @@ cls_model = joblib.load(os.path.join(MODEL_DIR, "classification_model.pkl"))
 scaler = joblib.load(os.path.join(MODEL_DIR, "scaler.pkl"))
 thresholds = joblib.load(os.path.join(MODEL_DIR, "thresholds.pkl"))
 cluster_model = joblib.load(os.path.join(MODEL_DIR, "clustering_model.pkl"))
-
+# Load classification models
+log_model = joblib.load(os.path.join(MODEL_DIR, "logistic_model.pkl"))
+dt_model = joblib.load(os.path.join(MODEL_DIR, "decision_tree_model.pkl"))
+rf_model = joblib.load(os.path.join(MODEL_DIR, "random_forest_model.pkl"))
+svm_model = joblib.load(os.path.join(MODEL_DIR, "svm_model.pkl"))
+mlp_model = joblib.load(os.path.join(MODEL_DIR, "mlp_model.pkl"))
 
 @app.route("/")
 def home():
@@ -46,7 +51,19 @@ def predict():
         reg_prediction = reg_model.predict(input_scaled)[0]
 
         # Classification prediction
-        cls_prediction = cls_model.predict(input_scaled)[0]
+        selected_model = request.form["model_choice"]
+
+        models = {
+            "logistic": log_model,
+            "decision_tree": dt_model,
+            "random_forest": rf_model,
+            "svm": svm_model,
+            "mlp": mlp_model
+        }
+
+        model_used = models[selected_model]
+
+        cls_prediction = model_used.predict(input_scaled)[0]
 
         class_labels = {
             0: "Low Value",
@@ -68,7 +85,8 @@ def predict():
             "index.html",
             regression_result=round(reg_prediction, 3),
             classification_result=class_labels[cls_prediction],
-            cluster_result=cluster_labels[cluster_prediction]
+            cluster_result=cluster_labels[cluster_prediction],
+            selected_model=selected_model
         )
 
     except Exception as e:
@@ -76,4 +94,4 @@ def predict():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True,port=5001)
